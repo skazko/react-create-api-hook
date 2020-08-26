@@ -1,30 +1,30 @@
 {
-    "name": "react-hook-use-api-method",
-    "version": "0.0.1",
-    "description": "React hook to make http requests easy",
-    "main": "dist/index.js",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "tsc",
-        "prepare": "npm run build"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/skazko/react-hook-use-api.git"
-    },
-    "keywords": [
-        "useApi"
-    ],
-    "author": "skazko",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/skazko/react-hook-use-api/issues"
-    },
-    "homepage": "https://github.com/skazko/react-hook-use-api#readme",
-    "peerDependencies": {
-        "@types/react": "^16.9.47",
-        "react": "^16.13.1"
-    }
+  "name": "react-hook-use-api-method",
+  "version": "0.0.3",
+  "description": "React hook to make http requests easy",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skazko/react-hook-use-api.git"
+  },
+  "keywords": [
+    "useApi"
+  ],
+  "author": "skazko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skazko/react-hook-use-api/issues"
+  },
+  "homepage": "https://github.com/skazko/react-hook-use-api#readme",
+  "peerDependencies": {
+    "@types/react": "^16.9.47",
+    "react": "^16.13.1"
+  }
 }
