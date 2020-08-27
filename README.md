@@ -1,50 +1,68 @@
-### Example
+## Usage
 
-```typescript
+```tsx
+const [data, getData, status] = useApi(yourApiMethod);
+```
+
+`yourApiMethod` - a function that make request, should return Promise;
+
+`data` - data you want to get;
+
+`getData` - function that shoukd be invoked to start data fetching;
+
+`status.pending` - pending indicator (boolean);
+
+`status.error` - null if no errors
+
+## Example
+
+```tsx
 import React from "react";
 import axios from "axios";
 import { useApi } from "react-hook-use-api-method";
 
 interface Post {
-  id: number;
-  title: string;
+    id: number;
+    title: string;
 }
 
-function getPostsMethod() {
-  return axios
-    .request<Post[]>({
-      // request config
-    })
-    .then((response) => {
-      return response.data;
-    });
+function getPostsMethod(args: string) {
+    // You can use fetch or any function that return promise
+    return axios
+        .request<Post[]>({
+            // request config
+        })
+        .then((response) => {
+            return response.data;
+        });
 }
 
 function App() {
-  const [posts, getPosts, postsStatus] = useApi<Post[]>(getPostsMethod);
-  const loadPosts = React.useCallback(() => {
-    getPosts();
-  }, [getPosts]);
+    const [posts, getPosts, status] = useApi(getPostsMethod);
+    const loadPosts = React.useCallback(() => {
+        // pass args for api method
+        getPosts("any args if needed");
+    }, [getPosts]);
 
-  return (
-    <div>
-      <button disabled={postsStatus.pending} onClick={loadPosts}>
-        {postsStatus.pending ? "Loading..." : "Load posts"}
-      </button>
-      <div>
-        {postsStatus.error && postsStatus.error.toString()}
-        {posts ? (
-          posts.map((post) => (
-            <div key={post.id}>
-              <h2>{post.title}</h2>
+    return (
+        <div>
+            <button disabled={status.pending} onClick={loadPosts}>
+                {status.pending ? "Loading..." : "Load posts"}
+            </button>
+            <div>
+                {status.error && status.error.toString()}
+                {posts ? (
+                    posts.map((post) => (
+                        <div key={post.id}>
+                            <h2>{post.title}</h2>
+                        </div>
+                    ))
+                ) : (
+                    <div>You have no posts</div>
+                )}
             </div>
-          ))
-        ) : (
-          <div>You have no posts</div>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

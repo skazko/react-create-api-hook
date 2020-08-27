@@ -1,51 +1,51 @@
 {
-  "name": "react-hook-use-api-method",
-  "version": "0.0.3",
-  "description": "React hook to make http requests easy",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skazko/react-hook-use-api.git"
-  },
-  "keywords": [
-    "useApi"
-  ],
-  "author": "skazko",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/skazko/react-hook-use-api/issues"
-  },
-  "homepage": "https://github.com/skazko/react-hook-use-api#readme",
-  "peerDependencies": {
-    "@types/react": "^16.9.47",
-    "react": "^16.13.1"
-  },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^3.4.1",
-    "@types/jest": "^26.0.10",
-    "jest": "^26.4.2",
-    "react-test-renderer": "^16.13.1",
-    "ts-jest": "^26.3.0",
-    "typescript": "^4.0.2"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "moduleDirectories": [
-      "node_modules",
-      "src"
+    "name": "react-hook-use-api-method",
+    "version": "0.0.4",
+    "description": "React hook to make http requests easy",
+    "main": "dist/index.js",
+    "files": [
+        "dist"
     ],
-    "testRegex": ".*\\.test.ts$"
-  },
-  "dependencies": {
-    "@types/react": "^16.9.48",
-    "react": "^16.13.1"
-  }
+    "scripts": {
+        "build": "tsc",
+        "prepare": "npm run build",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/skazko/react-hook-use-api.git"
+    },
+    "keywords": [
+        "useApi"
+    ],
+    "author": "skazko",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/skazko/react-hook-use-api/issues"
+    },
+    "homepage": "https://github.com/skazko/react-hook-use-api#readme",
+    "peerDependencies": {
+        "@types/react": "^16.9.47",
+        "react": "^16.13.1"
+    },
+    "devDependencies": {
+        "@testing-library/react-hooks": "^3.4.1",
+        "@types/jest": "^26.0.10",
+        "jest": "^26.4.2",
+        "react-test-renderer": "^16.13.1",
+        "ts-jest": "^26.3.0",
+        "typescript": "^4.0.2"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "moduleDirectories": [
+            "node_modules",
+            "src"
+        ],
+        "testRegex": ".*\\.test.ts$"
+    },
+    "dependencies": {
+        "@types/react": "^16.9.48",
+        "react": "^16.13.1"
+    }
 }
