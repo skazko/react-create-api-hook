@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from "react";
 
-export function useApi<T, A extends Array<any> = any[], E = Error>(
+export function useApi<T, A extends Array<any>>(
     fetch: (...args: A) => Promise<T>
-): [T | null, (...args: A) => void, { error: E | null; pending: boolean }] {
-    const [error, setError] = useState<null | E>(null);
+): [T | null, (...args: A) => void, { error: any; pending: boolean }] {
+    const [error, setError] = useState<any>(null);
     const [pending, setPending] = useState(false);
     const [data, setData] = useState<T | null>(null);
 
