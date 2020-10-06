@@ -1,15 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-
-interface ApiData<T, A extends Array<any>> {
-    data: T | null;
-    pending: boolean;
-    error: any;
-    fetch: (...args: A) => void;
-}
+import { UseApiMethodReturn, ApiMethod } from "./types";
 
 export function useApiMethod<T, A extends Array<any>>(
-    apiMethod: (...args: A) => Promise<T>
-): ApiData<T, A> {
+    apiMethod: ApiMethod<T, A>
+): UseApiMethodReturn<T, A> {
     const [error, setError] = useState<any>(null);
     const [pending, setPending] = useState(false);
     const [data, setData] = useState<T | null>(null);
