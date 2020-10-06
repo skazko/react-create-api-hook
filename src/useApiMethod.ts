@@ -1,8 +1,15 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 
-export function useApi<T, A extends Array<any>>(
-    fetch: (...args: A) => Promise<T>
-): [T | null, (...args: A) => void, { error: any; pending: boolean }] {
+interface ApiData<T, A extends Array<any>> {
+    data: T | null;
+    pending: boolean;
+    error: any;
+    fetch: (...args: A) => void;
+}
+
+export function useApiMethod<T, A extends Array<any>>(
+    apiMethod: (...args: A) => Promise<T>
+): ApiData<T, A> {
     const [error, setError] = useState<any>(null);
     const [pending, setPending] = useState(false);
     const [data, setData] = useState<T | null>(null);
@@ -16,11 +23,11 @@ export function useApi<T, A extends Array<any>>(
         };
     }, []);
 
-    const start: (...args: A) => void = useCallback(
+    const fetch: (...args: A) => void = useCallback(
         (...args) => {
             setPending(true);
             setError(null);
-            fetch(...args)
+            apiMethod(...args)
                 .then((data) => {
                     if (isMounted.current) {
                         setData(data);
@@ -34,8 +41,8 @@ export function useApi<T, A extends Array<any>>(
                     }
                 });
         },
-        [fetch, isMounted]
+        [apiMethod, isMounted]
     );
 
-    return [data, start, { error, pending }];
+    return { error, data, fetch, pending };
 }

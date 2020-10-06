@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
-import { useApi } from "../src/useApi";
+import { useApiMethod } from "../src/useApiMethod";
 
 const asyncFunc = () =>
     new Promise<string>((resolve, reject) => {
@@ -16,43 +16,47 @@ const errorFunc = () =>
     });
 
 test("should mount and get data from async func", async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useApi(asyncFunc));
+    const { result, waitForNextUpdate } = renderHook(() =>
+        useApiMethod(asyncFunc)
+    );
 
-    expect(result.current[0]).toBeNull();
-    expect(result.current[2].error).toBeNull();
-    expect(result.current[2].pending).toBe(false);
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBeNull();
+    expect(result.current.pending).toBe(false);
 
     act(() => {
-        result.current[1]();
+        result.current.fetch();
     });
 
-    expect(result.current[2].error).toBeNull();
-    expect(result.current[2].pending).toBe(true);
+    expect(result.current.error).toBeNull();
+    expect(result.current.pending).toBe(true);
 
     await waitForNextUpdate();
 
-    expect(result.current[0]).toBe("Done");
-    expect(result.current[2].pending).toBe(false);
-    expect(result.current[2].error).toBeNull();
+    expect(result.current.data).toBe("Done");
+    expect(result.current.pending).toBe(false);
+    expect(result.current.error).toBeNull();
 });
 
 test("should set error", async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useApi(errorFunc));
+    const { result, waitForNextUpdate } = renderHook(() =>
+        useApiMethod(errorFunc)
+    );
 
-    expect(result.current[0]).toBeNull();
-    expect(result.current[2].error).toBeNull();
-    expect(result.current[2].pending).toBe(false);
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBeNull();
+    expect(result.current.pending).toBe(false);
 
     act(() => {
-        result.current[1]();
+        result.current.fetch();
     });
 
-    expect(result.current[2].error).toBeNull();
-    expect(result.current[2].pending).toBe(true);
+    expect(result.current.error).toBeNull();
+    expect(result.current.pending).toBe(true);
 
     await waitForNextUpdate();
 
-    expect(result.current[0]).toBeNull();
-    expect(result.current[2].pending).toBe(false);
-    expect(result.current[2].error).toBe("Error");
+    expect(result.current.data).toBeNull();
+    expect(result.current.pending).toBe(false);
+    expect(result.current.error).toBe("Error");
 });
