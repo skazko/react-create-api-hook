@@ -1,23 +1,22 @@
 import { renderHook, act } from "@testing-library/react-hooks";
-import { useApiMethod } from "../src/useApiMethod";
+import { createApiHook } from "../src/createApiHook";
 
-const asyncFunc = () =>
-    new Promise<string>((resolve, reject) => {
+const data = {
+    1: { value: "first" },
+    2: { value: "second" },
+};
+
+const getData = () =>
+    new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("Done");
+            resolve(data);
         }, 0);
     });
 
-const errorFunc = () =>
-    new Promise<string>((resolve, reject) => {
-        setTimeout(() => {
-            reject("Error");
-        }, 0);
-    });
-
-test("should mount and get data from async func", async () => {
+test("createApiHook tests not immediate", async () => {
+    const useData = createApiHook(getData);
     const { result, waitForNextUpdate } = renderHook(() =>
-        useApiMethod(asyncFunc)
+        useData({ loadImmediately: false })
     );
 
     expect(result.current.data).toBeNull();
@@ -33,30 +32,26 @@ test("should mount and get data from async func", async () => {
 
     await waitForNextUpdate();
 
-    expect(result.current.data).toBe("Done");
+    expect(result.current.data).toHaveProperty("1", { value: "first" });
+    expect(result.current.data).toHaveProperty("2", { value: "second" });
     expect(result.current.pending).toBe(false);
     expect(result.current.error).toBeNull();
 });
 
-test("should set error", async () => {
+test("createApiHook tests immediate", async () => {
+    const useData = createApiHook(getData);
     const { result, waitForNextUpdate } = renderHook(() =>
-        useApiMethod(errorFunc)
+        useData({ loadImmediately: true })
     );
 
     expect(result.current.data).toBeNull();
-    expect(result.current.error).toBeNull();
-    expect(result.current.pending).toBe(false);
-
-    act(() => {
-        result.current.fetch();
-    });
-
     expect(result.current.error).toBeNull();
     expect(result.current.pending).toBe(true);
 
     await waitForNextUpdate();
 
-    expect(result.current.data).toBeNull();
+    expect(result.current.data).toHaveProperty("1", { value: "first" });
+    expect(result.current.data).toHaveProperty("2", { value: "second" });
     expect(result.current.pending).toBe(false);
-    expect(result.current.error).toBe("Error");
+    expect(result.current.error).toBeNull();
 });
