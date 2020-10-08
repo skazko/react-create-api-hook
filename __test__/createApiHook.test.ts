@@ -26,9 +26,7 @@ const getValue = (id: keyof typeof data) =>
 
 test("createApiHook tests not immediate", async () => {
     const useData = createApiHook(getData);
-    const { result, waitForNextUpdate } = renderHook(() =>
-        useData({ loadImmediately: false })
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useData());
 
     expect(result.current.data).toBeNull();
     expect(result.current.error).toBeNull();
@@ -51,9 +49,7 @@ test("createApiHook tests not immediate", async () => {
 
 test("createApiHook tests immediate", async () => {
     const useData = createApiHook(getData);
-    const { result, waitForNextUpdate } = renderHook(() =>
-        useData({ loadImmediately: true })
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useData([]));
 
     expect(result.current.data).toBeNull();
     expect(result.current.error).toBeNull();
@@ -69,9 +65,7 @@ test("createApiHook tests immediate", async () => {
 
 test("createApiHook tests immediate should get value", async () => {
     const useData = createApiHook(getValue);
-    const { result, waitForNextUpdate } = renderHook(() =>
-        useData({ loadImmediately: true, args: ["1"] })
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useData(["1"]));
 
     expect(result.current.data).toBeNull();
     expect(result.current.error).toBeNull();
