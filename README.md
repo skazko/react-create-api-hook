@@ -13,7 +13,7 @@ It's written on TypeScript.
 ## Installing
 
 ```bash
-$ npm install react-hook-use-api-method
+$ npm install react-create-api-hook
 ```
 
 ## Example
