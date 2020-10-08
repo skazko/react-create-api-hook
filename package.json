@@ -1,6 +1,6 @@
 {
-    "name": "react-hook-use-api-method",
-    "version": "0.0.5",
+    "name": "react-create-api-hook",
+    "version": "0.0.1",
     "description": "React hook to make http requests easy",
     "main": "dist/index.js",
     "files": [
