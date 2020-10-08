@@ -1,1 +1,2 @@
-export * from "./useApi";
+export * from "./useApiMethod";
+export * from "./createApiHook";
