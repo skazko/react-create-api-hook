@@ -5,15 +5,15 @@ import { ApiMethod, UseApiHook } from "./types";
 export function createApiHook<T, A extends Array<any>>(
     apiMethod: ApiMethod<T, A>
 ): UseApiHook<T, A> {
-    const hook = (args?: A) => {
+    return (args?: A) => {
         const hookReturn = useApiMethod(apiMethod);
         useEffect(() => {
             if (args) {
                 hookReturn.fetch(...args);
             }
+            // eslint-disable-next-line
         }, []);
 
         return hookReturn;
     };
-    return hook;
 }
