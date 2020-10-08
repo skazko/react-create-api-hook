@@ -37,7 +37,7 @@ export const getBeers = async () => {
 Next step is to create hooks. Will keep them in `src/api/hooks.js`
 
 ```javascript
-import { createApiHook } from "react-hook-use-api-method";
+import { createApiHook } from "react-create-api-hook";
 import { getBeers, getBeer } from "./api";
 
 export const useBeers = createApiHook(getBeers);
