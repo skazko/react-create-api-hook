@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/skazko/react-hook-use-api.git"
+        "url": "git+https://github.com/skazko/react-create-api-hook.git"
     },
     "keywords": [
         "useApi"
@@ -21,9 +21,9 @@
     "author": "skazko",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/skazko/react-hook-use-api/issues"
+        "url": "https://github.com/skazko/react-create-api-hook/issues"
     },
-    "homepage": "https://github.com/skazko/react-hook-use-api#readme",
+    "homepage": "https://github.com/skazko/react-create-api-hook#readme",
     "peerDependencies": {
         "@types/react": "^16.9.47",
         "react": "^16.13.1"
