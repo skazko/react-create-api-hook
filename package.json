@@ -1,6 +1,6 @@
 {
     "name": "react-create-api-hook",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "React hook to make http requests easy",
     "main": "dist/index.js",
     "files": [
@@ -13,10 +13,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/skazko/react-create-api-hook.git"
+        "url": "git://github.com/skazko/react-create-api-hook.git"
     },
     "keywords": [
-        "useApi"
+        "react",
+        "use-api",
+        "react-hook",
+        "api-hook"
     ],
     "author": "skazko",
     "license": "MIT",
@@ -43,8 +46,5 @@
             "src"
         ],
         "testRegex": ".*\\.test.ts$"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
     }
 }
